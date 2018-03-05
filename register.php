@@ -2,7 +2,7 @@
 // Include config file
 require_once 'core/config.php';
 
-//TODO: if a userr signs up sucessfully notify them then redirect to login page
+//COMPLETED: if a userr signs up sucessfully notify them then redirect to login page
  
 // Define variables and initialize with empty values
 $username = $password = $confirm_password = "";
@@ -79,9 +79,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-                //Notify user that registration was successful
-                // Redirect to login page
-                header("location: login.php");
+               
+                // COMPLETED: Redirect to successful registration page
+                session_start();
+                $_SESSION['username'] = $username;
+                //header("location: login.php");
+                header("location: successful.php");
             } else{
                 echo "Something went wrong. Please try again later.";
             }
